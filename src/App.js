@@ -1,24 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NavBar  from "./NavBar.js";
+import Homepage from './Homepage';
+import Menu from './Menu';
+
+// https://opentdb.com/api_config.php API Documentation
+// https://opentdb.com/api_category.php category list
+// https://opentdb.com/api_token.php?command=request session token
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+{/* sign in to save score - make a rails backend to handle users and scores */}
+          <NavBar/>
+
+          <Routes>
+
+            <Route 
+              path="/" 
+              index 
+              element={<Homepage/>} 
+              />
+
+            <Route 
+              path="/menu" 
+              index 
+              element={<Menu/>} 
+              />
+
+          </Routes>
+
+      </div>
+    </Router>
   );
 }
 
