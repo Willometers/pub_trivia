@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
     function PlayButton () {
 
@@ -11,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
         return (
             <form onSubmit={handleSubmit} >
-                <button type="submit">Menu</button>
+                <Button type="submit">Menu</Button>
             </form>
         )
     }
