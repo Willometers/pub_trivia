@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar  from "./NavBar.js";
 import Homepage from './Homepage';
 import Menu from './Menu';
+import QuestionShowPage from './QuestionShowPage';
 
 // https://opentdb.com/api_config.php API Documentation
 // https://opentdb.com/api_category.php category list
@@ -29,6 +30,12 @@ function App() {
               path="/menu" 
               index 
               element={<Menu/>} 
+              />
+
+            <Route 
+              path="/question" 
+              index 
+              element={<QuestionShowPage/>} 
               />
 
           </Routes>
