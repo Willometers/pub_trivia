@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 
 const QuestionShowPage = (category) => {
+    
 
     useEffect(() => { 
         fetch('https://opentdb.com/api.php?amount=10&category=9&difficulty=easy')

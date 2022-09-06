@@ -31,16 +31,21 @@ const Menu = () => {
             <h2>Menu</h2> 
                 <p>Category Selections:</p>
                 <Dropdown>
+
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                         Dropdown Button
                     </Dropdown.Toggle>
-                {/* if esle to handle loading data to avoid error  */}
-                    <Dropdown.Menu>
-                        {categories.map((cat)=> (
+
+                    <Dropdown.Menu >
+
+                        {categories.forEach((cat)=> (
                         <Dropdown.Item name={cat.name} onClick={handleSubmit}>{cat.name}</Dropdown.Item>
                         ))}
+                        
                     </Dropdown.Menu>
+
                 </Dropdown>
+
                 <br/>
                 
                 {selection.length > 0 ? <Button onClick={handlePlay} category={selection}>Play: {selection}</Button> : null}
