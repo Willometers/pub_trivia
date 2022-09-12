@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
+import QuestionShowPage from './QuestionShowPage';
 
 function Menu() {
     const navigate = useNavigate()
@@ -17,6 +18,7 @@ function Menu() {
 
         const handleSubmit = (e) => {
             e.preventDefault()
+            console.log("selec", e.target.id)
             setSelection(e.target.name)
         }
 
@@ -41,7 +43,7 @@ function Menu() {
                         <Dropdown.Menu >
 
                             {categories.map((cat)=> (
-                            <Dropdown.Item name={cat.name} onClick={handleSubmit}>{cat.name}</Dropdown.Item>
+                            <Dropdown.Item name={cat.name} id={cat.id} onClick={handleSubmit}>{cat.name} </Dropdown.Item>
                             ))}
                             
                         </Dropdown.Menu>
@@ -50,12 +52,12 @@ function Menu() {
     
                     <br/>
                     
-                    {selection.length > 0 ? <Button onClick={handlePlay} category={selection}>Play: {selection}</Button> : null}
+                    {selection.length > 0 ? <Button onClick={handlePlay}> {selection}</Button> : null} 
                 </div>
             );
         else 
             return (
-                <div> LOADING </div>
+                <div> LOADING CATEGORIES </div>
             )
 }
 
