@@ -1,13 +1,15 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import QuestionCard from './QuestionCard';
+
 
 // set up redux store to grab questions move fetch to higher level
 
 const QuestionShowPage = (selection) => {
     const [ question, setQuestion ] = useState([])
-
-
+    const [ allAnswers, setAllAnswers ] = useState([])
+    const [ correctAnswer, setCorrectAnswer ] = useState([])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -23,15 +25,7 @@ console.log('Q', question.results)
         return (
             <div>
                 {question.results.map((ques)=> (
-
-                <Card style={{ width: '18rem' }}>
-                <Card.Body>
-                    <Card.Title>{ques.question}</Card.Title>
-                    <Card.Text></Card.Text>
-                    <Button variant="primary"></Button>
-                </Card.Body>
-                </Card>
-
+                    <QuestionCard ques={ques}/>
                 ))}
             </div>
         )
