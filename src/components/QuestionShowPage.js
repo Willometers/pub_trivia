@@ -1,41 +1,45 @@
-import { useEffect } from "react"
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 // set up redux store to grab questions move fetch to higher level
 
-const QuestionShowPage = (id) => {
-    const navigate = useNavigate()
+const QuestionShowPage = (selection) => {
     const [ question, setQuestion ] = useState([])
 
-    useEffect(() => { 
-        fetch('https://opentdb.com/api.php?amount=10&category=9&difficulty=easy')
-        .then((res) => res.json())
-        .then(res => setQuestion(res))
-        })
 
-    if (question.results)
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        fetch(`https://opentdb.com/api.php?amount=10`)
+        .then((res) => res.json())
+        .then((res) => setQuestion(res))
+        .then((res) => console.log("QSP res", res))
+    }
+
+console.log('Q', question.results)
+
+    if (question.results != null)
         return (
             <div>
-                {console.log(question.results)}
-                {question.results.map((cat)=> (       
+                {question.results.map((ques)=> (
+
                 <Card style={{ width: '18rem' }}>
                 <Card.Body>
-                    <Card.Title></Card.Title>
-                    <Card.Text>{cat.question}</Card.Text>
-                    <Button variant="primary">Q</Button>
+                    <Card.Title>{ques.question}</Card.Title>
+                    <Card.Text></Card.Text>
+                    <Button variant="primary"></Button>
                 </Card.Body>
                 </Card>
+
                 ))}
             </div>
-            )
-         else
-            return (
-              
-                <div>Loading</div>
-            );
+        )
+    else 
+    return (
+        <Button onClick={handleSubmit}>Play</Button>
+    )
+
 }
 
 export default QuestionShowPage

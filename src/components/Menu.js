@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown';
-import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import QuestionShowPage from './QuestionShowPage';
+import { Button } from 'react-bootstrap';
 
 function Menu() {
     const navigate = useNavigate()
@@ -14,19 +14,14 @@ function Menu() {
         fetch('https://opentdb.com/api_category.php')
         .then((res) => res.json())
         .then(res => setCategories(res.trivia_categories))
-    })
-
+    }, [])
+    
         const handleSubmit = (e) => {
-            e.preventDefault()
-            console.log("selec", e.target.id)
-            setSelection(e.target.name)
+            e.preventDefault();
+            console.log("selec", e.target.id);
+            setSelection(e.target);
         }
 
-        const handlePlay = (e) => {
-            e.preventDefault()
-            navigate("/question")
-        }
-        
         if (categories.length > 0)
             
             return (
@@ -37,13 +32,13 @@ function Menu() {
                     <Dropdown>
 
                         <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            Select Category
+                            {selection ? `${selection.name}` : `Select Category`}
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu >
 
                             {categories.map((cat)=> (
-                            <Dropdown.Item name={cat.name} id={cat.id} onClick={handleSubmit}>{cat.name} </Dropdown.Item>
+                            <Dropdown.Item key={cat.id} name={cat.name} id={cat.id} onClick={handleSubmit}>{cat.name} </Dropdown.Item>
                             ))}
                             
                         </Dropdown.Menu>
@@ -51,13 +46,15 @@ function Menu() {
                     </Dropdown>
     
                     <br/>
-                    
-                    {selection.length > 0 ? <Button onClick={handlePlay}> {selection}</Button> : null} 
+                    <QuestionShowPage selection={selection.id}/>
+                     
+
                 </div>
+
             );
         else 
             return (
-                <div> LOADING CATEGORIES </div>
+                <div> LOADING </div>
             )
 }
 

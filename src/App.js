@@ -4,6 +4,7 @@ import NavBar  from "./components/NavBar.js";
 import Homepage from './components/Homepage';
 import Menu from './components/Menu';
 import QuestionShowPage from './components/QuestionShowPage';
+import { useEffect } from 'react';
 
 // https://opentdb.com/api_config.php API Documentation
 // https://opentdb.com/api_category.php category list
@@ -12,6 +13,7 @@ import QuestionShowPage from './components/QuestionShowPage';
 
 
 function App() {
+
   return (
     <Router>
       <div className="App">
