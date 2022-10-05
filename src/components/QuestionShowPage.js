@@ -8,22 +8,25 @@ import QuestionCard from './QuestionCard';
 
 const QuestionShowPage = (selection) => {
     const [ question, setQuestion ] = useState([])
-    const [ allAnswers, setAllAnswers ] = useState([])
     const [ correctAnswer, setCorrectAnswer ] = useState([])
+    console.log("props", selection)
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        fetch(`https://opentdb.com/api.php?amount=10`)
+        fetch(`https://opentdb.com/api.php?amount=10&category=${selection.selection}`)
         .then((res) => res.json())
         .then((res) => setQuestion(res))
-        .then((res) => console.log("QSP res", res))
+        .then((res) => console.log("return", res))
     }
 
-console.log('Q', question.results)
+    // console.log("results", question)
 
-    if (question.results != null)
+    if (question.results != undefined)
+        
         return (
             <div>
+                {console.log("results", question)}
+                Hello
                 {question.results.map((ques)=> (
                     <QuestionCard ques={ques}/>
                 ))}

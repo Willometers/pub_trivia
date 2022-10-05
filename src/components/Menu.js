@@ -18,7 +18,6 @@ function Menu() {
     
         const handleSubmit = (e) => {
             e.preventDefault();
-            console.log("selec", e.target.id);
             setSelection(e.target);
         }
 
